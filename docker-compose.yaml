@@ -1,0 +1,134 @@
+version: '3'
+
+services: 
+
+  eureka-server:
+    image: eurekaserver
+    ports: 
+      - "8761:8761"
+    environment:
+      - management.zipkin.tracing.endpoint=http://zipkin-server:9411/api/v2/spans      
+    networks:
+      - micro-network
+    depends_on:
+      - zipkin-server
+ 
+  
+  zipkin-server:
+    image: openzipkin/zipkin
+    ports: 
+      - "9411:9411"
+    networks:
+      - micro-network
+
+
+  postgres-fraudcustomer:
+    image: postgres
+    ports: 
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=gwwz0909xy
+      - POSTGRES_DB=fraudcustomer
+    networks:
+      - micro-network
+    volumes:
+      - ./postgres-fraudcustomer:/data/postgres    
+
+
+  postgres-frauddetect:
+    image: postgres
+    ports: 
+      - "5433:5433"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=gwwz0909xy
+      - POSTGRES_DB=frauddetect
+    networks:
+      - micro-network
+    volumes:
+      - ./postgres-frauddetect:/data/postgres         
+
+
+  postgres-notification:
+    image: postgres
+    ports: 
+      - "5434:5434"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=gwwz0909xy
+      - POSTGRES_DB=notification
+    networks:
+      - micro-network
+    volumes:
+      - ./postgres-notification:/data/postgres  
+
+
+  apigateway-service:
+    image: apigateway-service
+    ports: 
+      - "9191:9191"
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://eureka-server:8761/eureka
+      - management.zipkin.tracing.endpoint=http://zipkin-server:9411/api/v2/spans
+    depends_on:
+      - eureka-server
+      - zipkin-server
+    networks:
+      - micro-network
+
+
+  fraudcustomer-service:
+    image: fraudcustomer-service
+    ports: 
+      - "8081:8081"
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://eureka-server:8761/eureka
+      - management.zipkin.tracing.endpoint=http://zipkin-server:9411/api/v2/spans
+      - spring.datasource.url=jdbc:postgresql://postgres-fraudcustomer:5432/fraudcustomer        
+    depends_on:
+      - eureka-server
+      - zipkin-server
+      - postgres-fraudcustomer
+    networks:
+      - micro-network    
+
+
+  frauddetect-service:
+    image: frauddetect-service
+    ports: 
+      - "8082:8082"
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://eureka-server:8761/eureka
+      - management.zipkin.tracing.endpoint=http://zipkin-server:9411/api/v2/spans
+      - spring.datasource.url=jdbc:postgresql://postgres-frauddetect:5432/frauddetect         
+    depends_on:
+      - eureka-server
+      - zipkin-server
+      - postgres-frauddetect
+    networks:
+      - micro-network
+
+
+  notification-service:
+    image: notification-service
+    ports: 
+      - "8084:8084"
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://eureka-server:8761/eureka
+      - management.zipkin.tracing.endpoint=http://zipkin-server:9411/api/v2/spans
+      - spring.datasource.url=jdbc:postgresql://postgres-notification:5432/notification         
+    depends_on:
+      - eureka-server
+      - zipkin-server
+      - postgres-frauddetect
+    networks:
+      - micro-network        
+
+networks:
+  micro-network:
+
+      
+
+    
+    

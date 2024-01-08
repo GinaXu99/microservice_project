@@ -1,0 +1,10 @@
+/Users/gina/Documents/workspace-spring-tool-suite-4-4.19.1.RELEASE/MicroserviceProject/fraudcustomer-service/src/main/java/com/microservice/eurekaserver/fraudcustomer/NotificationServiceClient.java
+/Users/gina/Documents/workspace-spring-tool-suite-4-4.19.1.RELEASE/MicroserviceProject/fraudcustomer-service/src/main/java/com/microservice/eurekaserver/fraudcustomer/FraudServiceClient.java
+/Users/gina/Documents/workspace-spring-tool-suite-4-4.19.1.RELEASE/MicroserviceProject/fraudcustomer-service/src/main/java/com/microservice/eurekaserver/fraudcustomer/FraudcustomerApplication.java
+/Users/gina/Documents/workspace-spring-tool-suite-4-4.19.1.RELEASE/MicroserviceProject/fraudcustomer-service/src/main/java/com/microservice/eurekaserver/fraudcustomer/FraudCustomerDto.java
+/Users/gina/Documents/workspace-spring-tool-suite-4-4.19.1.RELEASE/MicroserviceProject/fraudcustomer-service/src/main/java/com/microservice/eurekaserver/fraudcustomer/NotificationRequestDto.java
+/Users/gina/Documents/workspace-spring-tool-suite-4-4.19.1.RELEASE/MicroserviceProject/fraudcustomer-service/src/main/java/com/microservice/eurekaserver/fraudcustomer/FraudCustomerService.java
+/Users/gina/Documents/workspace-spring-tool-suite-4-4.19.1.RELEASE/MicroserviceProject/fraudcustomer-service/src/main/java/com/microservice/eurekaserver/fraudcustomer/FraudDetectionHistoryResult.java
+/Users/gina/Documents/workspace-spring-tool-suite-4-4.19.1.RELEASE/MicroserviceProject/fraudcustomer-service/src/main/java/com/microservice/eurekaserver/fraudcustomer/FraudCustomerController.java
+/Users/gina/Documents/workspace-spring-tool-suite-4-4.19.1.RELEASE/MicroserviceProject/fraudcustomer-service/src/main/java/com/microservice/eurekaserver/fraudcustomer/FraudCustomer.java
+/Users/gina/Documents/workspace-spring-tool-suite-4-4.19.1.RELEASE/MicroserviceProject/fraudcustomer-service/src/main/java/com/microservice/eurekaserver/fraudcustomer/FraudCustomerRepository.java
